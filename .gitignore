@@ -1,11 +1,13 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
+data/caltech-101
+data/archive.zip
 *.py[cod]
 *$py.class
-
+.idea
 # C extensions
 *.so
-
+env
 # Distribution / packaging
 .Python
 build/
