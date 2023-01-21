@@ -4,4 +4,5 @@ coremltools
 requests
 scikit-learn
 pandas
+tensorflow
 -e .
