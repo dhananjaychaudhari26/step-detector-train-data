@@ -80,7 +80,7 @@ class S3Connection:
             self.s3_client.upload_file(
                 Filename = f"{training_pipeline.ARTIFACT_DIR}/{training_pipeline_config.timestamp}/{training_pipeline.MODEL_TRAINER_DIR_NAME}/{training_pipeline.MODEL_TRAINER_TRAINED_MODEL_DIR}/{training_pipeline.MODEL_FILE_NAME}",
                 Bucket = self.bucket,
-                Key= f"{training_pipeline.ARTIFACT_MODEL_PATH}/{training_pipeline.MODEL_FILE_NAME}",
+                Key= f"{training_pipeline.ARTIFACT_DIR}/{training_pipeline.ARTIFACT_MODEL_PATH}/{training_pipeline.MODEL_FILE_NAME}",
             )
             #upload trained/data.csv file to s3
             # self.upload_to_s3(training_pipeline.PREV_DATA_DIR_NAME, training_pipeline.FILE_NAME)
