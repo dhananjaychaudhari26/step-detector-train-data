@@ -76,13 +76,13 @@ class S3Connection:
             s3_artifact_path = f"s3://{self.bucket}/{training_pipeline.ARTIFACT_DIR}/{training_pipeline_config.timestamp}"
             self.sync_folder_to_s3(os.path.join(training_pipeline.ARTIFACT_DIR,training_pipeline_config.timestamp),s3_artifact_path)
             #upload trained/data.csv file to s3
-            self.upload_to_s3(training_pipeline.PREV_DATA_DIR_NAME, training_pipeline.FILE_NAME)
+            # self.upload_to_s3(training_pipeline.PREV_DATA_DIR_NAME, training_pipeline.FILE_NAME)
 
             # Delete all csv files from s3 present in data_validation folder after training
-            response = self.s3_client.list_objects(Bucket=self.bucket, Prefix=f"{training_pipeline.NEW_DATA_PATH}/{training_pipeline.NEW_DATA_DIR}", MaxKeys=1000)
-            if 'Contents' in response:
-                for object in response['Contents']:
-                    self.s3_client.delete_object(Bucket=self.bucket, Key=object['Key'])
+            # response = self.s3_client.list_objects(Bucket=self.bucket, Prefix=f"{training_pipeline.NEW_DATA_PATH}/{training_pipeline.NEW_DATA_DIR}", MaxKeys=1000)
+            # if 'Contents' in response:
+            #     for object in response['Contents']:
+            #         self.s3_client.delete_object(Bucket=self.bucket, Key=object['Key'])
 
             #Call Service to update model details to server
             # https://ms-search-engine.s3.ap-south-1.amazonaws.com/artifact/01_20_2023_23_08_30/model_trainer/trained_model/android.tflite
