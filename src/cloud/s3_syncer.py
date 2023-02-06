@@ -75,6 +75,13 @@ class S3Connection:
             #Sync latest artifact to s3
             s3_artifact_path = f"s3://{self.bucket}/{training_pipeline.ARTIFACT_DIR}/{training_pipeline_config.timestamp}"
             self.sync_folder_to_s3(os.path.join(training_pipeline.ARTIFACT_DIR,training_pipeline_config.timestamp),s3_artifact_path)
+            #upload model file to artifact dir 
+            # self.upload_to_s3(training_pipeline.PREV_DATA_DIR_NAME, training_pipeline.FILE_NAME)
+            self.s3_client.upload_file(
+                Filename = f"{training_pipeline.ARTIFACT_DIR}/{training_pipeline_config.timestamp}/{training_pipeline.MODEL_TRAINER_DIR_NAME}/{training_pipeline.MODEL_TRAINER_TRAINED_MODEL_DIR}/{training_pipeline.MODEL_FILE_NAME}",
+                Bucket = self.bucket,
+                Key= f"{training_pipeline.ARTIFACT_MODEL_PATH}/{training_pipeline.MODEL_FILE_NAME}",
+            )
             #upload trained/data.csv file to s3
             # self.upload_to_s3(training_pipeline.PREV_DATA_DIR_NAME, training_pipeline.FILE_NAME)
 
