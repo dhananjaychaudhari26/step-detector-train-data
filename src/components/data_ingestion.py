@@ -37,11 +37,14 @@ class DataIngestion:
                 
             logging.info(f"Existing data with shape {data.shape}")  
 
+            count = 0
             for csv in os.listdir(self.data_ingestion_config.new_data_dir):
                 df= pd.read_csv(os.path.join(self.data_ingestion_config.new_data_dir, csv))
                 df = df[df["label"].isin(["left","right"])]
                 data = data.append(df)
+                count = count + 1
 
+            logging.info(f"Total csv files read {count}")
             logging.info(f"Merged data with shape before drop duplicate {data.shape}")  
             logging.info(f"Dropping duplicates")
 
